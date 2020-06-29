@@ -11,7 +11,6 @@ body {
     border: 1px solid #F7F4F7;
     border-radius: 3px;
     box-shadow: 0 0 10px #DBDBDB;
-    float: right;
 }
 
 #current-weather-display {
@@ -24,7 +23,7 @@ body {
     border: 1px solid #F7F4F7;
     border-radius: 3px;
     box-shadow: 0 0 10px #DBDBDB;
-    float: left;
+    margin-bottom: 100px;
 }
 
 #current-weather-display h1 {
@@ -45,18 +44,4 @@ body {
 
 .btn-group {
     width: 100%
-}
-
-footer {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    border-top: 3px solid #F7F4F7;
-    box-shadow: 0 -5px 5px -5px #F7F4F7;
-    text-align: center;
-    color: black;
-}
-
-footer p {
-    margin: 10px auto;
 }

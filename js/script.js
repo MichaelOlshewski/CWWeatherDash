@@ -27,7 +27,7 @@ $(document).ready(function() {
         }
 
         var apiKey = "956e3f10f1bb30392cacd6f271ecc9c8";
-        var queryUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&units=" + units + "&appid=" + apiKey;
+        var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&units=" + units + "&appid=" + apiKey;
 
         $.ajax({
             url: queryUrl,
@@ -41,7 +41,7 @@ $(document).ready(function() {
                 console.log(response);
 
                 var iconCode = response.weather[0].icon;
-                var iconURL = "http://openweathermap.org/img/w/" + iconCode + ".png";
+                var iconURL = "https://openweathermap.org/img/w/" + iconCode + ".png";
                     
                 $("#cityDisplay").text(response.name);
 
@@ -70,7 +70,7 @@ $(document).ready(function() {
                     console.log(plus5Day);
                 }
                     
-                var queryUviURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "&lat=" + response.coord.lat + "&lon=" + response.coord.lon;
+                var queryUviURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "&lat=" + response.coord.lat + "&lon=" + response.coord.lon;
                     
                 $.ajax({
                     url: queryUviURL,
@@ -128,7 +128,7 @@ $(document).ready(function() {
                     },
                 });
 
-                var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&units=" + units + "&appid=" + apiKey;
+                var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&units=" + units + "&appid=" + apiKey;
 
                 $.ajax({
                     url: fiveDayURL,

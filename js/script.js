@@ -6,11 +6,11 @@ $(document).ready(function() {
 
         
         var currentDay = moment().format("MMMM Do, YYYY");
-        var plus1Day = moment().day(6).format("MM/DD/YYYY");
-        var plus2Day = moment().day(7).format("MM/DD/YYYY");
-        var plus3Day = moment().day(8).format("MM/DD/YYYY");
-        var plus4Day = moment().day(9).format("MM/DD/YYYY");
-        var plus5Day = moment().day(10).format("MM/DD/YYYY");
+        var plus1Day = moment().add(1, "days").format("MM/DD/YYYY");
+        var plus2Day = moment().add(2, "days").format("MM/DD/YYYY");
+        var plus3Day = moment().add(3, "days").format("MM/DD/YYYY");
+        var plus4Day = moment().add(4, "days").format("MM/DD/YYYY");
+        var plus5Day = moment().add(5, "days").format("MM/DD/YYYY");
         var cityInput  = $("#cityInput").val();
         var units = "";
         

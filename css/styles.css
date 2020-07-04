@@ -95,13 +95,22 @@ hr {
     color: white;
     border-radius: 15px;
     text-align: center;
+    margin-bottom: 50px;
 }
+
 .owmIconSmall {
     margin: 0 auto;
 }
 
 .flexContainer {
-    list-style: none;
     display: flex;
     justify-content: space-evenly;
+    width: 100%;
+    align-self: center;
+}
+
+.card {
+    width: 175px;
+    margin: 10px;
+    text-align: center;
 }

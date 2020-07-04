@@ -5,7 +5,7 @@ body {
 .side-list-menu {
     background-color: #FAFAFA;
     width: 80%;
-    height: 400px;
+    height: auto;
     margin: 10px auto;
     padding: 10px;
     border: 1px solid #F7F4F7;
@@ -16,14 +16,14 @@ body {
 #current-weather-display {
     background-color: #FAFAFA;
     color: black;
-    width: 100%;
+    width: 93%;
     height: auto;
     margin: 10px auto;
     padding: 10px;
     border: 1px solid #F7F4F7;
     border-radius: 3px;
     box-shadow: 0 0 10px #DBDBDB;
-    margin-bottom: 100px;
+    margin-bottom: 25px;
 }
 
 #current-weather-display h1 {
@@ -78,4 +78,30 @@ body {
 
 .hide {
     display: none;
+}
+
+#owmIcon {
+    width: 100px;
+}
+
+hr {
+    width: 93%;
+    margin: 0 auto;
+}
+.dayDisplay {
+    width: 150px;
+    height: 175px;
+    background-color: #037BFE;
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+}
+.owmIconSmall {
+    margin: 0 auto;
+}
+
+.flexContainer {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
 }

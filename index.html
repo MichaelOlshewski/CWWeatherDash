@@ -17,10 +17,10 @@
         <br>
         <main>
             <section>
-                <div>
+                <div class="container-fluid">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-10 col-lg-6 col-xl-3">
-                            <div class="container fluid side-list-menu">
+                        <div class="col-3">
+                            <div class="side-list-menu">
                                 <div class="input-group mb-3">
                                     <input id="cityInput" type="text" class="form-control" placeholder="City or State" aria-label="City or State" aria-describedby="button-addon2">
                                     <div class="input-group-append">
@@ -37,27 +37,82 @@
                                 </div>
                                 <div class="list-group">
                                     <a href="#" class="list-group-item list-group-item-action">Atlanta</a>
-                                    <a href="#" class="list-group-item list-group-item-action">Los Angeles</a>
-                                    <a href="#" class="list-group-item list-group-item-action">Las Vegas</a>
-                                    <a href="#" class="list-group-item list-group-item-action">Cleveland</a>
-                                    <a href="#" class="list-group-item list-group-item-action">Seattle</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-lg-10 col-xl-9">
-                            <div class="container">
-                                <div id="current-weather-display">
-                                    <div class="alert alert-danger hide" id="errors" role="alert">
-                                        You must enter a city or state!
-                                    </div>
-                                    <h1 id="cityDisplay"></h1>
-                                    <p style="text-align: center;"id="currentDay"></p>
-                                    <div id="current-weather-forecast">
-                                        <p>Temperature: <span id="tempDisplay"></span></p>
-                                        <p>Humidity: <span id="humidDisplay"></span></p>
-                                        <p>Wind Speed: <span id="windSpeedDisplay"></span></p>
-                                        <p>UV Index: <span class="uvIndex" id="uvDisplay"></span></p>
-                                    </div>
+                        <div class="col-9">
+                            <div id="current-weather-display">
+                                <div class="alert alert-danger hide" id="noResultError" role="alert">
+                                    There was an error! Please check the name and retry!
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="alert alert-danger hide" id="blankStateCity" role="alert">
+                                    You must enter a city or state!
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="alert alert-danger hide" id="noUVerror" role="alert">
+                                    Failed to get the current UV Index for today!
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <h1 id="cityDisplay"></h1>
+                                <p class="hide" style="text-align: center;"id="currentDay"></p>
+                                <img id="owmIcon" src="" alt="">
+                                <div id="current-weather-forecast">
+                                    <p>Temperature: <span id="tempDisplay"></span></p>
+                                    <p>Humidity: <span id="humidDisplay"></span></p>
+                                    <p>Wind Speed: <span id="windSpeedDisplay"></span></p>
+                                    <p>UV Index: <span class="uvIndex" id="uvDisplay"></span></p>
+                                </div>
+                                <div class="hide" id="fiveDayDisplay">
+                                    <h3 style="text-align:center;margin-bottom: 20px;">5-Day Weather Report</h3>
+                                    <ul class="flexContainer">
+                                        <li>
+                                            <div class="dayDisplay" id="dayOne">
+                                                <p><strong id="d1Date"></strong></p>
+                                                <img id="d1WIcon">
+                                                <h6 id="d1TempDisplay"></h6>
+                                                <h6 id="d1HumidDisplay"></h6>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="dayDisplay" id="dayTwo">
+                                                <p><strong id="d2Date"></strong></p>
+                                                <img id="d2WIcon">
+                                                <h6 id="d2TempDisplay"></h6>
+                                                <h6 id="d2HumidDisplay"></h6>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="dayDisplay" id="dayThree">
+                                                <p><strong id="d3Date"></strong></p>
+                                                <img id="d3WIcon">
+                                                <h6 id="d3TempDisplay"></h6>
+                                                <h6 id="d3HumidDisplay"></h6>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="dayDisplay" id="dayFour">
+                                                <p><strong id="d4Date"></strong></p>
+                                                <img id="d4WIcon">
+                                                <h6 id="d4TempDisplay"></h6>
+                                                <h6 id="d4HumidDisplay"></h6>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="dayDisplay" id="dayFive">
+                                                <p><strong id="d5Date"></strong></p>
+                                                <img id="d5WIcon">
+                                                <h6 id="d5TempDisplay"></h6>
+                                                <h6 id="d5HumidDisplay"></h6>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

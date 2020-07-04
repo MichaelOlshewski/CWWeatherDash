@@ -128,7 +128,7 @@ $(document).ready(function() {
                     },
                 });
 
-                var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&units=" + units + "&appid=" + apiKey;
+                var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&units=" + units + "&appid=" + apiKey;
 
                 $.ajax({
                     url: fiveDayURL,

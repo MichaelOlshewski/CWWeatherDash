@@ -4,51 +4,53 @@ $(document).ready(function() {
 
     $("#searchButton").on("click", function() {
 
+        savePrevSearch();
+        showPrevSearches();
         
         var currentDay = moment().format("MMMM Do, YYYY");
-        var plus1Day = moment().add(1, "days").format("MM/DD/YYYY");
-        var plus2Day = moment().add(2, "days").format("MM/DD/YYYY");
-        var plus3Day = moment().add(3, "days").format("MM/DD/YYYY");
-        var plus4Day = moment().add(4, "days").format("MM/DD/YYYY");
-        var plus5Day = moment().add(5, "days").format("MM/DD/YYYY");
+        var plus1Day = moment().add(1, "days").format("MM/DD/YY");
+        var plus2Day = moment().add(2, "days").format("MM/DD/YY");
+        var plus3Day = moment().add(3, "days").format("MM/DD/YY");
+        var plus4Day = moment().add(4, "days").format("MM/DD/YY");
+        var plus5Day = moment().add(5, "days").format("MM/DD/YY");
         var cityInput  = $("#cityInput").val();
         var units = "";
         
         if ($("#cityInput").val() === "") {
             $("#blankStateCity").removeClass("hide");
         }
-
+        
         $("#currentDay").text(currentDay);
-
+        
         if ($("#fahrenheit").is(":checked")) {
             units = "imperial";
         } else {
             units = "metric";
         }
-
+        
         var apiKey = "956e3f10f1bb30392cacd6f271ecc9c8";
         var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&units=" + units + "&appid=" + apiKey;
-
+        
         $.ajax({
             url: queryUrl,
             method: "GET",
             dataType: "json",
             success: (function(response) {
-
+                
                 $("#blankStateCity").addClass("hide");
                 $("#noResultError").addClass("hide");
-
+                
                 console.log(response);
-
+                
                 var iconCode = response.weather[0].icon;
                 var iconURL = "https://openweathermap.org/img/w/" + iconCode + ".png";
-                    
+                
                 $("#cityDisplay").text(response.name);
-
+                
                 $("#currentDay").removeClass("hide");
-                    
+                
                 $("#owmIcon").attr("src", iconURL);
-                    
+                
                 if (units === "imperial") {
                     $("#tempDisplay").text(response.main.temp + "\xB0 F");
                     $("#windSpeedDisplay").text(response.wind.speed + " MPH");
@@ -58,7 +60,7 @@ $(document).ready(function() {
                 }
                 
                 $("#humidDisplay").text(response.main.humidity + "%");
-
+                
                 if (!productionMode) {
                     console.log("Temperature: " + response.main.temp);
                     console.log("Wind Speed: " + response.wind.speed);
@@ -69,19 +71,19 @@ $(document).ready(function() {
                     console.log(plus4Day);
                     console.log(plus5Day);
                 }
-                    
+                
                 var queryUviURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + "&lat=" + response.coord.lat + "&lon=" + response.coord.lon;
-                    
+                
                 $.ajax({
                     url: queryUviURL,
                     method: "GET",
                     dataType: "json",
                     success: function(uviResponse) {
-
+                        
                         $("#uvDisplay").text(" " + JSON.stringify(uviResponse.value));
-                            
+                        
                         var uvIndex = Math.floor(uviResponse.value);
-
+                        
                         if (uvIndex >= 0 && uvIndex <= 2) {
                             $("#uvDisplay").addClass("uvIndexLow");
                             $("#uvDisplay").removeClass("uvIndexModerate");
@@ -127,25 +129,25 @@ $(document).ready(function() {
                         $("#uvDisplay").text("Error!");
                     },
                 });
-
+                
                 var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&units=" + units + "&appid=" + apiKey;
-
+                
                 $.ajax({
                     url: fiveDayURL,
                     method: "GET",
                     dataType: "json",
                     success: function(fiveDayResponse) {
-
+                        
                         console.log(fiveDayResponse);
-
+                        
                         var iconCodeSmallDay1 = "https://openweathermap.org/img/w/" + fiveDayResponse.list[4].weather[0].icon + ".png";
                         var iconCodeSmallDay2 = "https://openweathermap.org/img/w/" + fiveDayResponse.list[12].weather[0].icon + ".png";
                         var iconCodeSmallDay3 = "https://openweathermap.org/img/w/" + fiveDayResponse.list[20].weather[0].icon + ".png";
                         var iconCodeSmallDay4 = "https://openweathermap.org/img/w/" + fiveDayResponse.list[28].weather[0].icon + ".png";
                         var iconCodeSmallDay5 = "https://openweathermap.org/img/w/" + fiveDayResponse.list[36].weather[0].icon + ".png";
-
+                        
                         $("#fiveDayDisplay").removeClass("hide");
-
+                        
                         if (units === "imperial") {
                             $("#d1TempDisplay").text("Temp: " + fiveDayResponse.list[4].main.temp + "\xB0 F");
                             $("#d2TempDisplay").text("Temp: " + fiveDayResponse.list[12].main.temp + "\xB0 F");
@@ -159,11 +161,11 @@ $(document).ready(function() {
                             $("#d4TempDisplay").text("Temp: " + fiveDayResponse.list[28].main.temp + "\xB0 C");
                             $("#d5TempDisplay").text("Temp: " + fiveDayResponse.list[36].main.temp + "\xB0 C");
                         }
-
+                        
                         $("#d1Date").text(plus1Day);
                         $("#d1WIcon").attr("src", iconCodeSmallDay1);
                         $("#d1HumidDisplay").text("Humidity: " + fiveDayResponse.list[4].main.humidity + "%");
-
+                        
                         $("#d2Date").text(plus2Day);
                         $("#d2WIcon").attr("src", iconCodeSmallDay2);
                         $("#d2HumidDisplay").text("Humidity: " + fiveDayResponse.list[12].main.humidity + "%");
@@ -171,18 +173,18 @@ $(document).ready(function() {
                         $("#d3Date").text(plus3Day);
                         $("#d3WIcon").attr("src", iconCodeSmallDay3);
                         $("#d3HumidDisplay").text("Humidity: " + fiveDayResponse.list[20].main.humidity + "%");
-
+                        
                         $("#d4Date").text(plus4Day);
                         $("#d4WIcon").attr("src", iconCodeSmallDay4);
                         $("#d4HumidDisplay").text("Humidity: " + fiveDayResponse.list[28].main.humidity + "%");
-
+                        
                         $("#d5Date").text(plus5Day);
                         $("#d5WIcon").attr("src", iconCodeSmallDay5);
                         $("#d5HumidDisplay").text("Humidity: " + fiveDayResponse.list[36].main.humidity + "%");
-
+                        
                     },
                     error: function() {
-
+                        
                     }
                 });
             }),
@@ -192,8 +194,39 @@ $(document).ready(function() {
                 }
             }
         });
+
+        $("#cityInput").text("")
+        
     });
+
+    let prevSearches = [];
+
+    showPrevSearches();
+
+    function savePrevSearch() {
+        if ($("#cityInput").val() === "") {
+            console.log("error!")
+        } else {
+            let prevSearched = {
+                prevSearch: $("#cityInput").val(),
+            }
+            prevSearches.push(prevSearched);
+            localStorage.setItem("prevSearchedLocations", JSON.stringify(prevSearches));
+        };
+    };
+
+    function showPrevSearches() {
+        let getPrevSearches = JSON.parse(localStorage.getItem("prevSearchedLocations"));
+        for (var i = 0; i < getPrevSearches.length; i++) {
+            var prevSearchBtn = $("<a>");
+            prevSearchBtn.addClass("list-group-item list-group-item-action");
+            prevSearchBtn.text(getPrevSearches[i].prevSearch);
+            $("#prevSearchButtons").append(prevSearchBtn);
+        }
+    }
+
     
+
     if (!productionMode) {
         console.log("Production Mode? " + productionMode);
     }
